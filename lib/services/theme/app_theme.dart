@@ -4,6 +4,8 @@ final ThemeData AppTheme = ThemeData(
     scaffoldBackgroundColor: Color.fromRGBO(250, 247, 235, 1),
     appBarTheme:
         const AppBarTheme(backgroundColor: Color.fromRGBO(127, 0, 25, 1)),
+    // drawerTheme:
+    //     DrawerThemeData(backgroundColor: Color.fromRGBO(127, 0, 25, 1)),
     colorScheme: ColorScheme(
         primary: Color.fromRGBO(204, 204, 204, 1),
         onPrimary: Color.fromRGBO(204, 204, 204, 1),
