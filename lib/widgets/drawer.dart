@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home/services/theme/app_theme.dart';
 
 class DrawerWidget extends StatelessWidget {
   @override
@@ -9,7 +10,7 @@ class DrawerWidget extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
+              color: AppTheme.primaryColor,
             ),
             child: Text('Drawer Header'),
           ),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:home/widgets/card.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:home/models/product.dart';
@@ -39,17 +40,47 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           title: const Text('Home'),
         ),
         drawer: DrawerWidget(),
-        body: Column(
-          children: [
-            TabBar(
-              isScrollable: true,
-              controller: _tabController,
-              tabs: _tabs,
-              onTap: (idx) async {
-                products = getProducts(_tabs[idx].text);
-              },
-            )
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              TabBar(
+                isScrollable: true,
+                controller: _tabController,
+                tabs: _tabs,
+                onTap: (idx) async {
+                  setState(() {
+                    products = getProducts(_tabs[idx].text);
+                  });
+                },
+              ),
+              FutureBuilder<List<Product>>(
+                future: products,
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<Product>> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator(); // Show loading indicator while waiting for data
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Text('No data available');
+                  } else {
+                    return GridView.count(
+                      shrinkWrap: true,
+                      crossAxisCount: 2,
+                      childAspectRatio: 8.0 / 13.0,
+                      children: List.generate(snapshot.data!.length, (index) {
+                        return Container(
+                          child: MyCard(product: snapshot.data![index]),
+                        );
+                      }),
+                    );
+                  }
+                },
+              )
+            ],
+          ),
         ));
   }
 }
@@ -77,6 +108,5 @@ Future<List<Product>> getProducts(String? category) async {
     }
   } else
     throw Exception('Failed to fetch data');
-
   return products;
 }
