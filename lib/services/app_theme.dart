@@ -12,7 +12,9 @@ final ThemeData AppTheme = ThemeData(
         unselectedLabelColor: Color.fromRGBO(204, 204, 204, 1),
         labelPadding: EdgeInsets.only(left: 20.0, right: 20.0),
         labelColor: Color.fromRGBO(127, 0, 25, 1)),
-    // drawerTheme:
-    //     DrawerThemeData(backgroundColor: Color.fromRGBO(127, 0, 25, 1)),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      unselectedItemColor: Color.fromRGBO(204, 204, 204, 1),
+      selectedItemColor: Color.fromRGBO(127, 0, 25, 1),
+    ),
     primaryColor: Color.fromRGBO(127, 0, 25, 1),
     primaryColorLight: Color.fromRGBO(204, 204, 204, 1));

@@ -32,6 +32,19 @@ abstract class AppLocalizations {
   ];
 
   String get hello;
+  String get about;
+  String get chair;
+  String get table;
+  String get bed;
+  String get lighting;
+  String get sofa;
+  String get cabinet;
+  String get sold;
+  String get cart;
+  String get favorite;
+  String get shop;
+  String get notification;
+  String get my;
 }
 
 class _AppLocalizationsDelegate
