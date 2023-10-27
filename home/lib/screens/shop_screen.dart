@@ -98,7 +98,7 @@ Future<List<Product>> getProducts(String? category) async {
       p.createdAt = DateFormat("yyyy/MM/dd").parse(j['createdAt']);
       p.price = j['price'];
       p.img = j['img'];
-      p.amount = j['amount'];
+      p.soldQty = j['soldQty'];
       products.add(p);
     }
   } else

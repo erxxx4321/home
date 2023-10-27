@@ -48,7 +48,7 @@ class ProductView extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
-                          '${l10n.sold}: ${NumberFormat('#,##,000').format(product.amount)}'))
+                          '${l10n.sold}: ${NumberFormat('#,##,000').format(product.soldQty)}'))
                 ],
               ),
             ),

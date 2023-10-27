@@ -28,12 +28,11 @@ class MyCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Image.network(
-                product.img, // Replace with your image URL
-                width: 180, // Set the image width to the card width
-                height: 200, // Set the desired image height
-                fit: BoxFit.cover, // Adjust the BoxFit property as needed
-              ),
+              Image.network(product.img,
+                  height: 180,
+                  width: double.infinity,
+                  fit: BoxFit.fitWidth // Replace with your image URL
+                  ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                 child: Text(
@@ -43,12 +42,24 @@ class MyCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 5.0),
+                padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
                     textAlign: TextAlign.left,
                     '${NumberFormat.simpleCurrency(locale: 'zh-TW', decimalDigits: 2).format(product.price)}',
                     style:
                         TextStyle(fontSize: 12, color: AppTheme.primaryColor)),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.add_shopping_cart_sharp),
+                      label: Text('加入購物車', style: TextStyle(fontSize: 12)),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => AppTheme.primaryColor)))
+                ],
               )
             ],
           ),

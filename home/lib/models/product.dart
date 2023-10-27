@@ -5,6 +5,6 @@ class Product {
   String category = "";
   DateTime createdAt = DateTime.now();
   int price = 0;
-  int amount = 0;
+  int soldQty = 0;
   String img = "";
 }

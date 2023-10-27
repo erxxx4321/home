@@ -21,7 +21,20 @@ router.post('/', async (req, res) => {
 			const salt = await bcrypt.genSalt(10);
 			req.body.password = await bcrypt.hash(req.body.password, salt);
 			let result = await users.insertOne(req.body);
-			res.send(result).status(200);
+			let insertedId = result.insertedId;
+			let cart_body = {
+				user_id: insertedId,
+				total: 0,
+				createdAt: new Date(Date.now()).toLocaleString(),
+			};
+			let cart = await db.collection('Cart');
+			let cart_result = await cart.insertOne(cart_body);
+			res
+				.send({
+					register: result,
+					opencart: cart_result,
+				})
+				.status(200);
 		}
 	} catch (error) {
 		console.error(error);
