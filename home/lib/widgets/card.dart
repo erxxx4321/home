@@ -1,8 +1,13 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:home/models/product.dart';
+import 'package:home/models/user.dart';
+import 'package:home/services/app_config.dart';
 import 'package:home/services/app_theme.dart';
+import 'package:home/services/shared_preference.dart';
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
-import '../views/product_view.dart';
+import 'package:home/screens/product_view.dart';
 import 'package:page_transition/page_transition.dart';
 
 class MyCard extends StatelessWidget {
@@ -12,12 +17,37 @@ class MyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void addToCart(User user) async {
+      Response response = await post(Uri.parse(AppConfig.cart + "/addItem"),
+          body: json.encode({'user_id': user.uid, 'product_id': product.pid}),
+          headers: {"Content-Type": "application/json"});
+      if (response.statusCode == 200) {
+        showDialog(
+            context: context,
+            builder: (context) => SimpleDialog(
+                  contentPadding: EdgeInsets.all(30.0),
+                  children: [Text('加入成功!')],
+                ));
+      } else {
+        showDialog(
+            context: context,
+            builder: (context) => SimpleDialog(
+                  title: Text(
+                    '加入失敗!',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                  contentPadding: EdgeInsets.all(30.0),
+                  children: [Text(response.body)],
+                ));
+      }
+    }
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
             context,
             PageTransition(
-                child: ProductView(product: product),
+                child: ProductScreen(product: product),
                 type: PageTransitionType.rightToLeft));
       },
       child: Card(
@@ -53,7 +83,10 @@ class MyCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () async {
+                        var user = await UserPreferences().getUser();
+                        addToCart(user);
+                      },
                       icon: Icon(Icons.add_shopping_cart_sharp),
                       label: Text('加入購物車', style: TextStyle(fontSize: 12)),
                       style: ButtonStyle(

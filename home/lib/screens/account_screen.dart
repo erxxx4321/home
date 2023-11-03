@@ -4,7 +4,7 @@ import 'package:home/providers/auth_provider.dart';
 import 'package:home/services/shared_preference.dart';
 import 'package:home/models/user.dart';
 import 'package:home/services/app_theme.dart';
-import 'package:home/views/home_view.dart';
+import 'package:home/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'login_screen.dart';
 import 'package:home/widgets/button.dart';
@@ -41,7 +41,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomeView()));
+                                builder: (context) => const HomeScreen()));
                       },
                       child: Text('確定'))
                 ],

@@ -7,16 +7,17 @@ import 'package:home/screens/notification_screen.dart';
 import 'package:home/screens/shop_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import '../services/I10n/app_localizations.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:home/services/I10n/app_localizations.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<HomeView> with SingleTickerProviderStateMixin {
+class _HomeState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   int _selectedIndex = 2;
   @override
   void initState() {
@@ -43,12 +44,19 @@ class _HomeState extends State<HomeView> with SingleTickerProviderStateMixin {
           onTap: (index) {
             setState(() {
               _selectedIndex = index;
+              // if (_selectedIndex == 0) {
+              //   Navigator.push(
+              //       context,
+              //       PageTransition(
+              //           child: const CartScreen(),
+              //           type: PageTransitionType.rightToLeft));
+              // }
             });
           },
           items: [
             BottomNavigationBarItem(
                 icon: const Icon(
-                  Icons.add_shopping_cart,
+                  Icons.shopping_cart_outlined,
                 ),
                 label: l10n.cart),
             BottomNavigationBarItem(

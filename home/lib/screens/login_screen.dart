@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home/views/home_view.dart';
+import 'package:home/screens/home_screen.dart';
 import 'package:home/widgets/input.dart';
 import 'package:home/widgets/button.dart';
 import 'package:home/services/app_theme.dart';
@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 builder: (context) => SimpleDialog(title: Text('登入成功')));
             Future.delayed(const Duration(milliseconds: 3), () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomeView()));
+                  MaterialPageRoute(builder: (context) => const HomeScreen()));
             });
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -74,23 +74,31 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('登入'),
-                        TextFormField(
-                            decoration:
-                                buildInputDecoration('輸入帳號', Icons.person),
-                            validator: (value) =>
-                                value!.isEmpty ? "請輸入帳號" : null,
-                            onSaved: (value) => _account = value!),
-                        TextFormField(
-                            decoration:
-                                buildInputDecoration('輸入密碼', Icons.password),
-                            validator: (value) =>
-                                value!.isEmpty ? "請輸入密碼" : null,
-                            onSaved: (value) => _password = value!),
-                        longButtons('登入', doLogin, AppTheme.primaryColor),
+                        Container(
+                            margin: EdgeInsets.only(top: 15.0),
+                            child: TextFormField(
+                                decoration:
+                                    buildInputDecoration('輸入帳號', Icons.person),
+                                validator: (value) =>
+                                    value!.isEmpty ? "請輸入帳號" : null,
+                                onSaved: (value) => _account = value!)),
+                        Container(
+                            margin: EdgeInsets.only(top: 15.0),
+                            child: TextFormField(
+                                decoration: buildInputDecoration(
+                                    '輸入密碼', Icons.password),
+                                validator: (value) =>
+                                    value!.isEmpty ? "請輸入密碼" : null,
+                                onSaved: (value) => _password = value!)),
+                        Container(
+                            margin: EdgeInsets.only(top: 15.0),
+                            child: longButtons(
+                                '登入', doLogin, AppTheme.primaryColor)),
                         TextButton(
                             child: Text('註冊',
                                 style: TextStyle(
-                                    color: AppTheme.primaryColorLight)),
+                                    color: AppTheme.primaryColorDark,
+                                    fontSize: 16)),
                             onPressed: () {
                               Navigator.pushNamed(context, '/register');
                             })

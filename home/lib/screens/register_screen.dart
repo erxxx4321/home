@@ -81,7 +81,10 @@ class RegisterScreen extends StatelessWidget {
                     decoration: InputDecoration(labelText: "密碼"),
                     onSaved: (newValue) => _password = newValue!,
                   ),
-                  longButtons('送出', doRegister, AppTheme.primaryColor)
+                  Container(
+                    margin: EdgeInsets.only(top: 15.0),
+                    child: longButtons('送出', doRegister, AppTheme.primaryColor),
+                  )
                 ],
               ),
             )));

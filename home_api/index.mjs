@@ -5,6 +5,7 @@ import users from './routes/users.mjs';
 import auth from './routes/auth.mjs';
 import categories from './routes/categories.mjs';
 import products from './routes/products.mjs';
+import cart from './routes/cart.mjs';
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -17,6 +18,7 @@ app.use('/users', users);
 app.use('/auth', auth);
 app.use('/categories', categories);
 app.use('/products', products);
+app.use('/cart', cart);
 
 // Global error handling
 app.use((err, _req, res, next) => {

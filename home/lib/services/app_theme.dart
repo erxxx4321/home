@@ -16,5 +16,9 @@ final ThemeData AppTheme = ThemeData(
       unselectedItemColor: Color.fromRGBO(204, 204, 204, 1),
       selectedItemColor: Color.fromRGBO(127, 0, 25, 1),
     ),
+    checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateProperty.all(Colors.white),
+        checkColor: MaterialStateProperty.all(Color.fromRGBO(127, 0, 25, 1))),
     primaryColor: Color.fromRGBO(127, 0, 25, 1),
-    primaryColorLight: Color.fromRGBO(204, 204, 204, 1));
+    primaryColorLight: Color.fromRGBO(204, 204, 204, 1),
+    primaryColorDark: Color.fromRGBO(102, 102, 102, 1));

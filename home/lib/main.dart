@@ -4,7 +4,7 @@ import 'package:home/screens/login_screen.dart';
 import 'package:home/screens/register_screen.dart';
 import 'package:provider/provider.dart';
 import './services/I10n/app_localizations.dart';
-import 'views/home_view.dart';
+import 'screens/home_screen.dart';
 import 'services/app_theme.dart';
 
 void main() {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             debugShowCheckedModeBanner: false,
             theme: AppTheme,
-            home: HomeView(),
+            home: HomeScreen(),
             routes: {
               '/login': (context) => LoginScreen(),
               '/register': (context) => RegisterScreen()

@@ -3,12 +3,12 @@ import 'package:home/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:home/services/app_theme.dart';
 import 'package:intl/intl.dart';
-import '../services/I10n/app_localizations.dart';
+import 'package:home/services/I10n/app_localizations.dart';
 import 'dart:developer' as developer;
 
-class ProductView extends StatelessWidget {
+class ProductScreen extends StatelessWidget {
   final Product product;
-  ProductView({required this.product});
+  ProductScreen({required this.product});
 
   @override
   Widget build(BuildContext context) {
